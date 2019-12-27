@@ -6,6 +6,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+ /*总结：感觉大体思路比较正确，就是步骤太繁琐，比起标准答案复杂了太多太多*/
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode l3 = new ListNode(0);
@@ -51,6 +52,10 @@ class Solution {
             num.next = new ListNode(x);
             num = num.next;
             l2 = l2.next;
+        }
+        if(y!=0){
+            num.next = new ListNode(y);
+            num = num.next;
         }
     return l3.next;
     }
