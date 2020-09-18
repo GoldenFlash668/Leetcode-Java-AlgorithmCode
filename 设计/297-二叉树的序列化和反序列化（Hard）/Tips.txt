@@ -1,0 +1,9 @@
+自己序列化的代码逻辑上是没问题的就是太繁琐了；
+Character.isDigit(char);//判断char字符是不是数字字符
+反序列化需要自己再练习练习
+deleteCharAt(sb.length() - 1);//删除字符串最后一个字符
+
+new Integer.valueof()返回的是Integer的对象。
+Integer.parseInt() 返回的是一个int的值。
+new Integer.valueof().intValue();返回的也是一个int的值。
+String[] ans =s.spilt(",");//将s按照‘，’分开并放到字符串数组中

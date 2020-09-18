@@ -1,0 +1,17 @@
+这个题有两个重点：
+（1）：Java如何获得一个随机数：
+从1到10的int型随数：
+方法一：
+(数据类型)(最小值+Math.random()*(最大值-最小值+1))
+(int)(1+Math.random()*(10-1+1))
+方法二：
+最小值+Math.random()*最大值
+(int)(1+Math.random()*10)
+方法三：
+Random ra =new Random();
+ra.nextInt(10)+1
+（2）：如何在线性时间复杂度删除一个元素
+本体采用一个map中存入（val ， list中的索引）和一个list；
+删除时通过map找到val的索引值；
+list中将最后一个值覆盖到当前要删除的值的index上；
+更新map；
