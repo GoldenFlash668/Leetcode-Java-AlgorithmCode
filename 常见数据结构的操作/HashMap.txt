@@ -1,0 +1,4 @@
+put();
+contains();
+get();
+getOrDefault(,);

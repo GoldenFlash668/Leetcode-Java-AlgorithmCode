@@ -1,0 +1,6 @@
+栈：
+构造：Stack<Integer> stack = Stack<>();
+常见API：
+出栈：stack.pop()
+获得栈顶元素：stack.peek()
+入栈：stack.push()
