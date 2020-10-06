@@ -1,0 +1,13 @@
+题解一：
+select Email from
+（
+select Email,count(Email) as c 
+from Person 
+group by Email
+）as fuzhu
+where c>1;
+
+题解二：//having 代替where  因为having的优先级低于聚合函数 where的优先级高于聚合函数
+select Email from Person 
+group by Email
+having count(Email)>1
