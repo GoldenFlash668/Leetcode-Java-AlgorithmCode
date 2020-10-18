@@ -1,0 +1,10 @@
+这道题第一眼看上去想的是利用优先队列，按照先比较数字从左数第一位，然后第一位相同时比较第一位与后面一位的大小关系以此类推，但是这样写结构太复杂了。就去看答案了！！！
+。。。
+答案中只是重写了一个Comparator<String>方法
+override   compare方法：
+具体方法利用了string的compareTo（）方法；
+比较两个字符串s1+s2、s2+s1；
+然后直接使用
+asStrs[i] = String.valueOf(nums[i]);
+ Arrays.sort(asStrs, new LargerNumberComparator());
+这样就产生了一个排序好的字符串数组
