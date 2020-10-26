@@ -1,0 +1,84 @@
+本题基本思想比较简单，但是需要用到一个自定义的比较器，这篇文章主要总结一下java中常见的比较器，以及比较器的使用方法；
+对于JDK8而言，有三种实现对象比较的方法：
+
+1、覆写Object类的equals（）方法；
+
+2、继承Comparable接口，并实现compareTo（）方法；
+
+3、定义一个单独的对象比较器，继承自Comparator接口，实现compare（）方法。
+
+由于使用的排序方式的不同，具体选择哪种方法来实现对象的比较也会有所不同。
+
+
+第一种方法比较便于理解，复写equals()方法一般用于自己实现的对象数组排序，而对于在应用Java内置的排序算法时，使用后两种方式都是可以实现的。
+
+先来看一下第二种方式，这种方式就是让自己编写的类继承Comparable接口，并实现接口的compareTo()方法，这种情况下，在使用java.util.Arrays.sort()方法时不用指定具体的比较器，sort()方法会使用对象自己的比较函数对对象进行排序。具体实例代码如下：
+  3 class BookCook implements Comparable<BookCook>{
+  4 	private String title;
+  5 	private double price;
+  6 	public BookCook(String title,double price){
+  7 		this.title = title;
+  8 		this.price = price;
+  9 	}
+ 10 	@Override
+ 11 	public String toString() {
+ 12 		return "书名："+this.title+",价格："+this.price;
+ 13 	}
+ 14 	@Override
+ 15 	public int compareTo(BookCook o) {
+ 16 		if(this.price > o.price){
+ 17 			return 1;
+ 18 		}else if(this.price < o.price){
+ 19 			return -1;
+ 20 		}else{
+ 21 			return 0;
+ 22 		}
+ 23 	}
+ 24 }
+
+从JDK1.8开始出现了Comparator接口，它的出现解决了当需要在已经开发好的代码基础上完善对象的比较功能时不想更改之前的代码的问题。这种情况，我们需要单独定义一个对象比较器，继承Comparator接口。具体实现代码如下：
+复制代码
+
+  1 class Student {
+  2 	private String name;
+  3 	private double score;
+  4 	public Student(String name,double score){
+  5 		this.name = name;
+  6 		this.score = score;
+  7 	}
+  8 	public double getScore(){
+  9 		return this.score;
+ 10 	}
+ 11 	@Override
+ 12 	public String toString() {
+ 13 		return "姓名:"+this.name+",分数:"+this.score;
+ 14 	}
+ 15 
+ 16 }
+ 17 class StudentComparator implements Comparator<Student> {
+ 18 	@Override
+ 19 	public int compare(Student o1,Student o2) {
+ 20 		if(o1.getScore() > o2.getScore()){
+ 21 			return 1;
+ 22 		}else if(o1.getScore() < o2.getScore()){
+ 23 			return -1;
+ 24 		}else{
+ 25 			return 0;
+ 26 		}
+ 27 	}
+ 28 }
+ 29 public class TestComparator {
+ 30 
+ 31 	public static void main(String[] args) {
+ 32 
+ 33 		Student[] sts = new Student[]{
+ 34 				new Student("小戴",60),
+ 35 				new Student("小王",90),
+ 36 				new Student("老王",80),
+ 37 				new Student("小萱",95)
+ 38 		};
+ 39             
+ 40 		java.util.Arrays.sort(sts, new StudentComparator());
+ 41 		System.out.println(java.util.Arrays.toString(sts));
+ 42 	}
+ 43 }
