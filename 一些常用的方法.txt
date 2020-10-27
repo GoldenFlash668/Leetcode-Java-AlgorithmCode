@@ -1,0 +1,5 @@
+import java.net.*;
+try {
+      return (InetAddress.getByName(IP) instanceof Inet6Address) ? "IPv6": "IPv4";
+    } catch(Exception e) {}
+//判断一个地址是ipv4还是ipv6 如果都不是抛出异常
