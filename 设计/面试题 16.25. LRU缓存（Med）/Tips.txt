@@ -1,0 +1,35 @@
+这个题是面试的时候经常遇到的问题，所以今天按照答案仔细的学习了一遍；
+
+方法一：
+是一个手写的简单的双向链表的实现；只要按照要求实现查找和put操作就可以了；
+方法二：
+也可以使用单向链表实现，但是实现方法差不多，只是稍微有点变化，map里存放对应key的node的pre（方便删除）；
+方法二：
+在 Java 语言中，同样有类似的数据结构 LinkedHashMap。
+class LRUCache extends LinkedHashMap<Integer, Integer>{
+    private int capacity;
+    
+    public LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    }
+
+    public int get(int key) {
+        return super.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        super.put(key, value);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity; 
+    }
+}
+
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/lru-cache/solution/lruhuan-cun-ji-zhi-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
