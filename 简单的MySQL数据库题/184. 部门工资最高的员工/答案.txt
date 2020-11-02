@@ -1,0 +1,21 @@
+先对 DepartmentId 字段分组查询最大值，得到不同 DepartmentId 下的最大值
+
+SELECT DepartmentId, max( Salary ) 
+FROM Employee 
+GROUP BY DepartmentId 
+
+再根据 DepartmentId 字段连接 Department 表，根据 Salary 和 DepartmentId 查找 Department.Name 字段
+
+SELECT
+	Department.NAME AS Department,
+	Employee.NAME AS Employee,
+	Salary 
+FROM
+	Employee,
+	Department 
+WHERE
+	Employee.DepartmentId = Department.Id 
+	AND ( Employee.DepartmentId, Salary ) 
+    IN (SELECT DepartmentId, max( Salary ) 
+        FROM Employee 
+        GROUP BY DepartmentId )
