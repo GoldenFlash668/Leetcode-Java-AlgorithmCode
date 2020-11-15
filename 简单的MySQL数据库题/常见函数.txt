@@ -1,0 +1,1 @@
+ （1），DATEDIFF 来比较两个日期类型的值。例：DATEDIFF(w1.date, w2.date) = 1     (w1比w2大一天)
